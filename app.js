@@ -57,6 +57,7 @@ class calculator {
         this.previousOperand = ''
     }
 
+
     getDisplayNumber(number){
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0])
@@ -91,7 +92,7 @@ class calculator {
 
 
 
-
+const sciFunc = document.querySelectorAll('[data-sciFunc]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const numberButtons = document.querySelectorAll('[data-number]');
@@ -130,3 +131,4 @@ deleteButton.addEventListener('click', button => {
     Calculator.delete();
     Calculator.updateDisplay();
 })
+
