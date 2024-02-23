@@ -16,6 +16,18 @@ body{
     background: linear-gradient(to bottom right, #ffffff, #4D4855);
 }
 
+#descText{
+    margin: 10px;
+    padding: 50px;
+    display: flex;
+    font-size: 24px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    white-space: no-wrap;
+}
+
+
 table{
     align-self:center;
     display: table;
@@ -53,6 +65,7 @@ tbody{
 }
 
 .functions{
+    white-space: nowrap;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -68,6 +81,12 @@ tbody{
     background-color: #708090;
 }
 
+.functions:hover{
+   background-color: #94a2af;
+   cursor: pointer;
+}
+
+
 .num{
     display: table-cell;
     vertical-align: middle;
@@ -82,6 +101,11 @@ tbody{
     font-weight: bold;
     color: #000;
     background-color:	#536878;
+}
+
+.num:hover{ 
+    cursor: pointer;
+    background-color: #77828b;
 }
 
 .operator{
@@ -100,6 +124,11 @@ tbody{
     background-color:	#53685f;
 }
 
+.operator:hover{
+    cursor: pointer;
+    background-color: #94a2af;
+}
+
 .scieq{
     display: table-cell;
     vertical-align: middle;
@@ -116,6 +145,12 @@ tbody{
     background-color:	#53685f;
 }
 
+.scieq:hover{
+    cursor: pointer;
+    background-color: #94a2af;
+}
+
+
 .scimrc{
     display: table-cell;
     vertical-align: middle;
@@ -130,6 +165,11 @@ tbody{
     font-weight: bold;
     color: #000;
     background-color:	#53685f;
+}
+
+.scimrc:hover{
+    background-color: #94a2af;
+    cursor: pointer;
 }
 
 

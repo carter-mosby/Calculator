@@ -14,6 +14,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div>
+    <!--for navbar soon to be addde-->            
+        </div>
+
+    
+        <div id="descText">
+            <p>
+            Welcome to my scientific calculator project;
+            this calculator is capable of double digit precision;
+            which supports both button and keyboard input
+            </p>
+        </div>
         <div class = 'Calculator'>
             <table>
                 <tbody>
@@ -76,7 +88,7 @@
                                     <button data-number class="num">4</button>
                                     <button data-number class="num">5</button>
                                     <button data-number class="num">6</button>
-                                    <button data-operation class="operator">-</button>
+                                    <button data-operation class="operator">-</button>  
                                     <button data-operation class="operator">Ans</button>  <!--saves previous answer after = is clicked once clicked again it clears the java function and replaces with the new answer-->
                                 </div>
                                 <div>
@@ -84,21 +96,21 @@
                                     <button data-number class="num">2</button>
                                     <button data-number class="num">3</button>
                                     <button data-operation class="operator">×</button>
-                                    <button data-operation class="operator">M+</button>
+                                    <button data-operation class="operator">M+</button> <!--add or subtract the current value from the stored memory value-->
                                 </div>
                                 <div>
                                     <button data-number class="num">0</button>
                                     <button data-number class="num">.</button>
-                                    <button data-operation class="operator">EXP</button>
+                                    <button data-operation class="operator">EXP</button> <!--Tells the calculator the next number entered will be a power of 10-->
                                     <button data-operation class="operator">÷</button>
                                     <button data-operation class="operator">M-</button>
                                 </div>
                                 <div>
                                     <button data-operation class="operator">±</button>
-                                    <button data-sciFunc class="operator">RND</button>
+                                    <button data-sciFunc class="operator">RND</button> <!--rounds the current opperand in the display field-->
                                     <button data-all-clear class="scieq">AC</button>
                                     <button data-equals class="scieq">=</button>
-                                    <button data-equals class="scimrc">MR</button>
+                                    <button data-equals class="scimrc">MR</button> <!---memory recall button which switches to memory clear on click-->
                                 </div>
                             </div>
                             <div id="scihistory">
