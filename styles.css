@@ -1,23 +1,164 @@
 *::before, *::after{
-    box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
     font-weight: normal;
 }
+div{
+    display: block;
+}
 
 body{
+    min-height: 100vh;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
     padding: 0;
     margin: 0;
     background: linear-gradient(to bottom right, #ffffff, #4D4855);
 }
 
+table{
+    align-self:center;
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing:2px ;
+    border-color:gray;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color:inherit;
+}
+
+
+#sciout{
+    padding: 5px;
+    border-top: 1px solid #252525;
+    border-bottom: 1px solid #252525;
+    border-left: 2px outset #252525;
+    border-right: 1px solid #252525;
+}
+
+#sciSect{
+    padding-top: 4px;
+    width: 100%;
+}
+
+#baseSect{
+    padding-top: 3px;
+}
+
+.functions{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #36454f;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #708090;
+}
+
+.num{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #36454f;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color:	#536878;
+}
+
+.operator{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #36454f;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color:	#53685f;
+}
+
+.scieq{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #36454f;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color:	#53685f;
+}
+
+.scimrc{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #36454f;
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color:	#53685f;
+}
+
+
+
+
+
+.scird{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #eeeeee;
+    font-family: inherit;
+    font-size: 13px;
+    color: #252525;
+    white-space: none;
+}
+
+td{
+    width: 100%;
+}
 
 .Calculator{
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    grid-template-columns:repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto)repeat(5, 100px);
+    min-height: 50vh;
+    min-width: 50%;
 }
 
 .Calculator > button{

@@ -2,74 +2,113 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="description" content="This is an scientific calculator with do
+        uble-digit precision that supports both button and keyboard input">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale = 1.0">
         <title>simple calculator</title>
         <link rel="stylesheet" href="styles.css"> 
         <script src="app.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class = 'Calculator'>
-            <div class="output">
-                <div data-previous-operand class="previous-operand"></div>
-                <div data-current-operand class="current-operand"></div>
-            </div>
-            <div>
-                <button data-sciFunc class="functions">tan</button>
-                <button data-sciFunc class="functions">cos</button>
-                <button data-sciFunc class="functions">Sin</button>
-                <input data-comOpt  name="comOpt" value="Rad" type="radio" onclick="cnDegreeRadians='radian'">
-                <input data-comOpt name="comOpt" value="Deg" type="radio" onclick="cnDegreeRadians='degree'">
-            </div>
-            <div>
-                <button data-sciFunc class="functions">tan <sup>-1</sup></button>
-                <button data-sciFunc class="functions">cos <sup>-1</sup></button>
-                <button data-sciFunc class="functions">Sin <sup>-1</sup></button>
-                <button data-sciFunc class="functions">Π</button>
-                <button data-sciFunc class="functions">e</button>
-            </div>
-            <div>
-                <button data-sciFunc class="functions">x <sup>y</sup></button>
-                <button data-sciFunc class="functions">x <sup>2</sup></button>
-                <button data-sciFunc class="functions">x <sup>3</sup></button>
-                <button data-sciFunc class="functions">e <sup>x</sup></button> <!--mean or expected average-->
-                <button data-sciFunc class="functions">10 <sup>x</sup></button> <!--10 to power of x-->
-            </div>
-            <div>
-                <button data-sciFunc class="functions"><sup>y</sup>√x</button> <!--y root of x-->
-                <button data-sciFunc class="functions"><sup>3</sup>√x</button><!--cubed root of x--> 
-                <button data-sciFunc class="functions">√x</button> <!--square root of x-->
-                <button data-sciFunc class="functions">log</button>
-                <button data-sciFunc class="functions">ln</button>
-            </div>
-            <div>
-                <button data-sciFunc class="functions">(</button>
-                <button data-sciFunc class="functions">)</button>
-                <button data-sciFunc class="functions">1/x</button>
-            </div>
-                <button data-sciFunc class="functions">x!</button>
-            <button data-sciFunc class="functions">%</button>
-            <button data-all-clear class="operator">AC</button>
-            <button data-delete class="operator">CE</button>
-            <button data-sciFunc class="functions">Inv</button>
-            <button data-operation class="operator">÷</button>
-            <button data-number class="num">1</button>
-            <button data-number class="num">2</button>
-            <button data-number class="num">3</button>
-            <button data-operation class="operator">*</button>
-            <button data-number class="num">4</button>
-            <button data-number class="num">5</button>
-            <button data-number class="num">6</button>
-            <button data-operation class="operator">+</button>
-            <button data-number class="num">7</button>
-            <button data-number class="num">8</button>
-            <button data-number class="num">9</button>
-            <button data-operation class="operator">Ans</button>
-            <button data-operation class="operator">EXP</button>
-            <button data-operation class="operator">-</button>
-            <button data-number class="num">0</button>
-            <button data-number class="num">.</button>
-            <button data-equals>=</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <td id="sciout">
+                            <div class="output">
+                                <div data-previous-operand class="previous-operand"></div>
+                                <div data-current-operand class="current-operand"></div>
+                            </div>
+                            <div id="sciSect">
+                                <div>
+                                    <button data-sciFunc class="functions">tan</button>
+                                    <button data-sciFunc class="functions">cos</button>
+                                    <button data-sciFunc class="functions">Sin</button>
+                                    <label for="scirdsettingr">
+                                    <input data-comOpt id="scirdsettingr" class="scird" name="comOpt" value="Rad" type="radio" onclick="cnDegreeRadians='radian'">Rad
+                                    </label>
+                                    <label for="scirdsettingd">
+                                    <input data-comOpt id="scirdsettingd" class="scird" name="comOpt" value="Deg" type="radio" onclick="cnDegreeRadians='degree'">Deg
+                                    </label>
+                                </div>
+                                <div>
+                                    <button data-sciFunc class="functions">tan<sup>-1</sup></button>
+                                    <button data-sciFunc class="functions">cos<sup>-1</sup></button>
+                                    <button data-sciFunc class="functions">Sin<sup>-1</sup></button>
+                                    <button data-sciFunc class="functions">Π</button>
+                                    <button data-sciFunc class="functions">e</button>
+                                </div>
+                                <div>
+                                    <button data-sciFunc class="functions">x <sup>y</sup></button>
+                                    <button data-sciFunc class="functions">x <sup>2</sup></button>
+                                    <button data-sciFunc class="functions">x <sup>3</sup></button>
+                                    <button data-sciFunc class="functions">e <sup>x</sup></button> <!--mean or expected average-->
+                                    <button data-sciFunc class="functions">10 <sup>x</sup></button> <!--10 to power of x-->
+                                </div>
+                                <div>
+                                    <button data-sciFunc class="functions"><sup>y</sup>√x</button> <!--y root of x-->
+                                    <button data-sciFunc class="functions"><sup>3</sup>√x</button><!--cubed root of x--> 
+                                    <button data-sciFunc class="functions">√x</button> <!--square root of x-->
+                                    <button data-sciFunc class="functions">log</button>
+                                    <button data-sciFunc class="functions">ln</button>
+                                </div>
+                                <div>
+                                    <button data-sciFunc class="functions">(</button>
+                                    <button data-sciFunc class="functions">)</button>
+                                    <button data-sciFunc class="functions">1/x</button>
+                                    <button data-sciFunc class="functions">%</button>
+                                    <button data-sciFunc class="functions">n!</button>
+                                </div>
+                            </div>
+                            <div id="baseSect">
+                                <div>
+                                    <button data-number class="num">7</button>
+                                    <button data-number class="num">8</button>
+                                    <button data-number class="num">9</button>
+                                    <button data-operation class="operator">+</button>
+                                    <button data-delete class="operator">CE</button>
+                                </div>
+                                <div>
+                                    <button data-number class="num">4</button>
+                                    <button data-number class="num">5</button>
+                                    <button data-number class="num">6</button>
+                                    <button data-operation class="operator">-</button>
+                                    <button data-operation class="operator">Ans</button>  <!--saves previous answer after = is clicked once clicked again it clears the java function and replaces with the new answer-->
+                                </div>
+                                <div>
+                                    <button data-number class="num">1</button>
+                                    <button data-number class="num">2</button>
+                                    <button data-number class="num">3</button>
+                                    <button data-operation class="operator">×</button>
+                                    <button data-operation class="operator">M+</button>
+                                </div>
+                                <div>
+                                    <button data-number class="num">0</button>
+                                    <button data-number class="num">.</button>
+                                    <button data-operation class="operator">EXP</button>
+                                    <button data-operation class="operator">÷</button>
+                                    <button data-operation class="operator">M-</button>
+                                </div>
+                                <div>
+                                    <button data-operation class="operator">±</button>
+                                    <button data-sciFunc class="operator">RND</button>
+                                    <button data-all-clear class="scieq">AC</button>
+                                    <button data-equals class="scieq">=</button>
+                                    <button data-equals class="scimrc">MR</button>
+                                </div>
+                            </div>
+                            <div id="scihistory">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
