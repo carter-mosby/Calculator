@@ -83,33 +83,31 @@ class calculator {
 
     // this should allow the appending of a number to the current operand. once appended it should push the result to the previousOperandTextElement
     sciFuncComputation(){
-        const current = parseFloat(this.currentOperand); //parses the current operand and saves it to a variable so the built in Math function accepts
-        //numbers appended to the current science function, although im doubtful this is useful and could just pass in the currentOperand. 
         if(isNaN(current)) return; 
 
             switch(this.sciFunction){
                 case"tan":
-                    Math.tan(current)
+                    Math.tan(this.currentOperand)
                     break;
 
                 case"sin":
-                    Math.sin(current)
+                    Math.sin(this.currentOperand)
                     break;
 
                 case"cos":
-                    Math.cos(current)
+                    Math.cos(this.currentOperand)
                     break;
 
                 case"tanH":
-                    Math.tanh(current)
+                    Math.tanh(this.currentOperand)
                     break;
 
                 case"sinH":
-                    Math.sinh(current)
+                    Math.sinh(this.currentOperand)
                     break;
 
                 case"cosH":
-                    Math.cosh(current)
+                    Math.cosh(this.currentOperand)
                     break;
 
                 default:
