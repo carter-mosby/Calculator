@@ -2,7 +2,7 @@ class calculator {
     constructor(previousOperandTextElement, currentOperandTextElement){
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
-        this.clear()
+        this.clear();
     } 
 
     clear(){
@@ -21,14 +21,13 @@ class calculator {
         this.currentOperand = this.currentOperand.toString() + number.toString();
     }
 
-
-    // bugged; with this method im trying to allow appendage to the current function which is clicked. 
-    appendSciFunc(funct) {
-        if (isNaN(parseFloat(this.currentOperand)) && funct !== '') {
-            this.currentOperand += funct;
+    
+    appendSciFunc(sciFunction) {
+        if (isNaN(parseFloat(this.currentOperand)) && sciFunction !== '') {
+            this.currentOperand += sciFunction;
         }
-        this.updateDisplay();
     }
+
     
 
     chooseOperation(operation){
@@ -41,11 +40,9 @@ class calculator {
         this.currentOperand = '';
     }
 
-    // bugged; when a function is clicked i want it to appear in the current text field, once clicked it should allow for the SciFunccomputation method;
-    // see sciFuncComputation method for more info
     chooseSciFunc(sciFunction){
-        if(this.previousOperand === '') return;
-        if (this.currentOperand === ''){
+        if(this.currentOperand === '') return;
+        if(this.previousOperand !== ''){
             this.sciFuncComputation();
         };
         this.sciFunction = sciFunction;
@@ -53,7 +50,6 @@ class calculator {
         this.currentOperand ='';
     }
 
-//computation method which parses the current and previous opperand and turns out a calculatrion based on if its in string format or not
     compute() {
         let computation
         const prev = parseFloat(this.previousOperand);
@@ -81,33 +77,32 @@ class calculator {
 
     }
 
-    // this should allow the appending of a number to the current operand. once appended it should push the result to the previousOperandTextElement
     sciFuncComputation(){
         if(isNaN(current)) return; 
 
             switch(this.sciFunction){
                 case"tan":
-                    Math.tan(this.currentOperand)
+                    this.currentOperand = Math.tan(current);
                     break;
 
                 case"sin":
-                    Math.sin(this.currentOperand)
+                    this.currentOperand = Math.sin(current);
                     break;
 
                 case"cos":
-                    Math.cos(this.currentOperand)
+                    this.currentOperand = Math.cos(current);
                     break;
 
                 case"tanH":
-                    Math.tanh(this.currentOperand)
+                    this.currentOperand = Math.tanh(current);
                     break;
 
                 case"sinH":
-                    Math.sinh(this.currentOperand)
+                    this.currentOperand = Math.sinh(current);
                     break;
 
                 case"cosH":
-                    Math.cosh(this.currentOperand)
+                    this.currentOperand = Math.cosh(current);
                     break;
 
                 default:
@@ -115,18 +110,16 @@ class calculator {
             }
             this.currentOperand = '';
             this.sciFunction = undefined;
-            this.previousOperand = this.currentOperand;
+            this.previousOperand = '';
     }
 
-//this method allows for a single digit point and then numbers to be added at the end of it without allowing for repition of a decimal point
+
     getDisplayNumber(number){
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0])
         const decimalDigits = stringNumber.split('.')[1]
         let integerDisplay 
-        if(isNaN(integerDigits)){
-            integerDisplay =''
-        } else { 
+         if(integerDigits || sciFunc){ 
             integerDisplay = integerDigits.toLocaleString('en', {
                 maximumFractionDigits: 0
             })
@@ -137,9 +130,7 @@ class calculator {
         } else {
             return integerDisplay;
         }
-    } 
-//display method : bugged; it displays numbers but doesnt push to the previous text element, when an operation is clicked.
-//when operation is pressed it clears Both text fields and then reappears when new numbers are pressed; the compute function still works.  
+    }  
 
     updateDisplay(){
         this.currentOperandTextElement.innerText = 
@@ -151,14 +142,6 @@ class calculator {
             this.previousOperandTextElement.innerText = '';
         }
 
-        this.currentOperandTextElement.innerText =
-            this.currentOperand;
-        if (this.sciFunction != null){
-            this.currentOperandTextElement.innerText =
-                `${this.sciFunction} ${this.getDisplayNumber(this.currentOperand)}`
-        } else {
-            this.previousOperandTextElement.innerText = '';
-        }
     }
 }
 
@@ -192,7 +175,6 @@ operationButton.forEach(button=> {
 })
 
 equalsButton.addEventListener('click', button => {
-    Calculator.sciFuncComputation();
     Calculator.compute();
     Calculator.updateDisplay();
 }) 
@@ -210,8 +192,15 @@ deleteButton.addEventListener('click', button => {
 functionButtons.forEach(button=> {
     button.addEventListener('click', ()=> {
         Calculator.chooseSciFunc(button.innerText);
-        Calculator.appendSciFunc(); //should this be here? im thinking i should place it in the  number event Listener so it can append to the science function.
+        Calculator.appendSciFunc(); 
         Calculator.updateDisplay();
     })
 })
 
+/*i found that the sciencefunction was messing with the equal event listener; as well as updateDisplay(), 
+    append science function is interfering with update display and clear display.  
+    im also guessing its interfering with getdisplay number
+
+
+    tommorow im going to reafactor this so there is no more interference;
+*/
