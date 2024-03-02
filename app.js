@@ -21,8 +21,6 @@ class calculator {
         this.currentOperand = this.currentOperand.toString() + number.toString();
     }
 
-    
-    
 
     chooseOperation(operation){
         if(this.currentOperand === '') return
@@ -64,7 +62,7 @@ class calculator {
         }
         this.currentOperand = computation;
         this.operation = undefined;    
-        this.previousOperand = ''
+        this.previousOperand = '';
 
     }
     getDisplayNumber(number){
@@ -79,7 +77,6 @@ class calculator {
         }
 
         if (decimalDigits != null){
-            let integerDisplay = 0;
             return `${integerDisplay}.${decimalDigits}`
         } else{
             return integerDisplay;
@@ -171,9 +168,8 @@ operationButton.forEach(button=> {
 })
 
 equalsButton.addEventListener('click', button => {
-    Calculator.compute();
+    if(Calculator.compute() || Calculator.sciFuncComputation()) return;
     Calculator.updateDisplay();
-    Calculator.sciFuncComputation();
 }) 
 
 allClearButton.addEventListener('click', button => {
