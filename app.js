@@ -6,11 +6,11 @@ class calculator {
     } 
 
     clear(){
-        this.currentOperand = "";
-        this.previousOperand = "";
+        this.currentOperand ='';
+        this.previousOperand ='';
         this.operation = undefined;
         this.sciFunction = undefined;
-    }
+    };
 
     delete(){
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
@@ -22,12 +22,6 @@ class calculator {
     }
 
     
-    appendSciFunc(sciFunction) {
-        if (isNaN(parseFloat(this.currentOperand)) && sciFunction !== '') {
-            this.currentOperand += sciFunction;
-        }
-    }
-
     
 
     chooseOperation(operation){
@@ -40,14 +34,11 @@ class calculator {
         this.currentOperand = '';
     }
 
-    chooseSciFunc(sciFunction){
-        if(this.currentOperand === '') return;
+    chooseSciOperator(sciFunction){
         if(this.previousOperand !== ''){
             this.sciFuncComputation();
         };
         this.sciFunction = sciFunction;
-        this.previousOperand = this.currentOperand;
-        this.currentOperand ='';
     }
 
     compute() {
@@ -76,61 +67,62 @@ class calculator {
         this.previousOperand = ''
 
     }
-
-    sciFuncComputation(){
-        if(isNaN(current)) return; 
-
-            switch(this.sciFunction){
-                case"tan":
-                    this.currentOperand = Math.tan(current);
-                    break;
-
-                case"sin":
-                    this.currentOperand = Math.sin(current);
-                    break;
-
-                case"cos":
-                    this.currentOperand = Math.cos(current);
-                    break;
-
-                case"tanH":
-                    this.currentOperand = Math.tanh(current);
-                    break;
-
-                case"sinH":
-                    this.currentOperand = Math.sinh(current);
-                    break;
-
-                case"cosH":
-                    this.currentOperand = Math.cosh(current);
-                    break;
-
-                default:
-                    return; 
-            }
-            this.currentOperand = '';
-            this.sciFunction = undefined;
-            this.previousOperand = '';
-    }
-
-
     getDisplayNumber(number){
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0])
         const decimalDigits = stringNumber.split('.')[1]
-        let integerDisplay 
-         if(integerDigits || sciFunc){ 
+        let integerDisplay = '';
+         if(integerDigits){ 
             integerDisplay = integerDigits.toLocaleString('en', {
                 maximumFractionDigits: 0
             })
         }
 
         if (decimalDigits != null){
+            let integerDisplay = 0;
             return `${integerDisplay}.${decimalDigits}`
-        } else {
+        } else{
             return integerDisplay;
-        }
+           }
     }  
+
+    sciFuncComputation(){
+        let sciComp
+        const current = parseInt(this.currentOperand);
+            switch(this.sciFunction){
+                case"tan":
+                    sciComp = Math.tan(current);
+                    break;
+
+                case"sin":
+                    sciComp = Math.sin(current);
+                    break;
+
+                case"cos":
+                    sciComp = Math.cos(current);
+                    break;
+
+                case"tanH":
+                    sciComp = Math.tanh(current);
+                    break;
+
+                case"sinH":
+                    sciComp = Math.sinh(current);
+                    break;
+
+                case"cosH":
+                    sciComp = Math.cosh(current);
+                    break;
+
+                default:
+                    return; 
+            }
+            this.currentOperand = sciComp;
+            this.sciFunction = undefined;
+            this.previousOperand = '';
+    }
+
+
 
     updateDisplay(){
         this.currentOperandTextElement.innerText = 
@@ -138,7 +130,11 @@ class calculator {
         if(this.operation != null){
             this.previousOperandTextElement.innerText = 
                 `${this.getDisplayNumber(this.previousOperand)} ${this.operation}` 
-        } else{
+        } else if (this.sciFunction != null){
+            this.currentOperandTextElement.innerText = 
+            `${this.sciFunction}(${this.getDisplayNumber(this.currentOperand)})`
+        } 
+        else{
             this.previousOperandTextElement.innerText = '';
         }
 
@@ -177,6 +173,7 @@ operationButton.forEach(button=> {
 equalsButton.addEventListener('click', button => {
     Calculator.compute();
     Calculator.updateDisplay();
+    Calculator.sciFuncComputation();
 }) 
 
 allClearButton.addEventListener('click', button => {
@@ -191,16 +188,7 @@ deleteButton.addEventListener('click', button => {
 
 functionButtons.forEach(button=> {
     button.addEventListener('click', ()=> {
-        Calculator.chooseSciFunc(button.innerText);
-        Calculator.appendSciFunc(); 
+        Calculator.chooseSciOperator(button.innerText);
         Calculator.updateDisplay();
     })
 })
-
-/*i found that the sciencefunction was messing with the equal event listener; as well as updateDisplay(), 
-    append science function is interfering with update display and clear display.  
-    im also guessing its interfering with getdisplay number
-
-
-    tommorow im going to reafactor this so there is no more interference;
-*/

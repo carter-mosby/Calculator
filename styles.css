@@ -232,6 +232,7 @@ td{
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
+    max-width: 258px;
 }
 
 .output .previous-operand{
