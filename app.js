@@ -1,3 +1,5 @@
+
+
 class calculator {
     constructor(previousOperandTextElement, currentOperandTextElement){
         this.previousOperandTextElement = previousOperandTextElement;
@@ -32,12 +34,17 @@ class calculator {
         this.currentOperand = '';
     }
 
-    chooseSciOperator(sciFunction){
+     chooseSciOperator(sciFunction){
+        if(this.currentOperand === ''){
+            this.compute();
+        }
         if(this.previousOperand !== ''){
             this.sciFuncComputation();
-        };
+        }
         this.sciFunction = sciFunction;
     }
+
+    
 
     compute() {
         let computation
@@ -65,6 +72,8 @@ class calculator {
         this.previousOperand = '';
 
     }
+
+    
     getDisplayNumber(number){
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0])
@@ -77,7 +86,7 @@ class calculator {
         }
 
         if (decimalDigits != null){
-            return `${integerDisplay}.${decimalDigits}`
+            return `${integerDisplay}.${decimalDigits}`;
         } else{
             return integerDisplay;
            }
@@ -110,16 +119,34 @@ class calculator {
                 case"cosH":
                     sciComp = Math.cosh(current);
                     break;
-
+                case"Π":
+                    sciComp = Math.PI(current);
+                    break;
                 default:
                     return; 
             }
             this.currentOperand = sciComp;
             this.sciFunction = undefined;
             this.previousOperand = '';
-    }
+
+        }
 
 
+
+
+    //exponents
+    exponents(exponent){
+        this.exponent = this.exponent 
+    };
+
+
+    exponentsComp(){
+        let powComp;
+        switch(this.exponent){
+            case "xy":
+                powComp = Math.pow();
+        }    
+    } 
 
     updateDisplay(){
         this.currentOperandTextElement.innerText = 
@@ -127,14 +154,20 @@ class calculator {
         if(this.operation != null){
             this.previousOperandTextElement.innerText = 
                 `${this.getDisplayNumber(this.previousOperand)} ${this.operation}` 
-        } else if (this.sciFunction != null){
-            this.currentOperandTextElement.innerText = 
-            `${this.sciFunction}(${this.getDisplayNumber(this.currentOperand)})`
-        } 
-        else{
+        } else{
             this.previousOperandTextElement.innerText = '';
         }
-
+        
+        
+        
+        if (this.sciFunction != null){
+            this.currentOperandTextElement.innerText = 
+           `${this.sciFunction}(${this.getDisplayNumber(this.currentOperand)})`
+        } else if (this.sciFunction === sciFunction){
+            this.currentOperandTextElement.innerText = 
+            `${this.sciFunction}(${this.sciFunction})`
+        }
+        
     }
 }
 
