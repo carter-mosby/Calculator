@@ -16,6 +16,7 @@ class calculator {
 
     delete(){
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
+        this.previousOperand = this.previousOperand.toString().slice(0, -1);
     }
 
     appendNumber(number){
@@ -143,7 +144,7 @@ class calculator {
     exponentsComp(){
         let powComp;
         switch(this.exponent){
-            case "xy":
+            case "":
                 powComp = Math.pow();
         }    
     } 
@@ -163,10 +164,7 @@ class calculator {
         if (this.sciFunction != null){
             this.currentOperandTextElement.innerText = 
            `${this.sciFunction}(${this.getDisplayNumber(this.currentOperand)})`
-        } else if (this.sciFunction === sciFunction){
-            this.currentOperandTextElement.innerText = 
-            `${this.sciFunction}(${this.sciFunction})`
-        }
+        } 
         
     }
 }
@@ -183,6 +181,8 @@ const equalsButton = document.querySelector('[data-equals]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const operationButton = document.querySelectorAll('[data-operation]');
+const exponentButton = document.querySelectorAll(['data-sciExponent']);
+const squareButton = document.querySelectorAll(['data-sciRoot']) 
 
 const Calculator = new calculator(previousOperandTextElement, currentOperandTextElement);
 
@@ -218,6 +218,13 @@ deleteButton.addEventListener('click', button => {
 functionButtons.forEach(button=> {
     button.addEventListener('click', ()=> {
         Calculator.chooseSciOperator(button.innerText);
+        Calculator.updateDisplay();
+    })
+})
+
+exponentButton.forEach(button => {
+    button.addEventListener('click', () => {
+        Calculator.chooseExpoOperator(button.innerText);
         Calculator.updateDisplay();
     })
 })
