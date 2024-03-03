@@ -1,5 +1,3 @@
-export 
-
 class calculator {
     constructor(previousOperandTextElement, currentOperandTextElement){
         this.previousOperandTextElement = previousOperandTextElement;
@@ -170,61 +168,64 @@ class calculator {
 }
 
 
-//I used data operators for legibility and organization 
-const radMode = document.querySelector('[scirdsettingr]')
-const degMode = document.querySelector('[scirdsettinfd]')
-const functionButtons = document.querySelectorAll('[data-sciFunc]')
-const currentOperandTextElement = document.querySelector('[data-current-operand]');
-const previousOperandTextElement = document.querySelector('[data-previous-operand]');
-const numberButtons = document.querySelectorAll('[data-number]');
-const equalsButton = document.querySelector('[data-equals]');
-const deleteButton = document.querySelector('[data-delete]');
-const allClearButton = document.querySelector('[data-all-clear]');
-const operationButton = document.querySelectorAll('[data-operation]');
-const exponentButton = document.querySelectorAll(['data-sciExponent']);
-const squareButton = document.querySelectorAll(['data-sciRoot']) 
+init = () => {
+    const radMode = document.querySelector('[scirdsettingr]');
+    const degMode = document.querySelector('[scirdsettinfd]');
+    const functionButtons = document.querySelectorAll('[data-sciFunc]')
+    const currentOperandTextElement = document.querySelector('[data-current-operand]');
+    const previousOperandTextElement = document.querySelector('[data-previous-operand]');
+    const numberButtons = document.querySelectorAll('[data-number]');
+    const equalsButton = document.querySelector('[data-equals]');
+    const deleteButton = document.querySelector('[data-delete]');
+    const allClearButton = document.querySelector('[data-all-clear]');
+    const operationButton = document.querySelectorAll('[data-operation]');
+    const exponentButton = document.querySelectorAll(['data-sciExponent']);
+    const squareButton = document.querySelectorAll(['data-sciRoot']);
 
-const Calculator = new calculator(previousOperandTextElement, currentOperandTextElement);
+    const Calculator = new calculator(previousOperandTextElement, currentOperandTextElement);
 
-numberButtons.forEach(button=> {
-    button.addEventListener('click', () => {
-       Calculator.appendNumber(button.innerText);
-       Calculator.updateDisplay(); 
-    })   
-})
+    numberButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            Calculator.appendNumber(button.innerText);
+            Calculator.updateDisplay();
+        })
+    })
 
-operationButton.forEach(button=> {
-    button.addEventListener('click', () => {
-       Calculator.chooseOperation(button.innerText);
-       Calculator.updateDisplay(); 
-    })   
-})
+    operationButton.forEach(button => {
+        button.addEventListener('click', () => {
+            Calculator.chooseOperation(button.innerText);
+            Calculator.updateDisplay();
+        })
+    })
 
-equalsButton.addEventListener('click', button => {
-    if(Calculator.compute() || Calculator.sciFuncComputation()) return;
-    Calculator.updateDisplay();
-}) 
-
-allClearButton.addEventListener('click', button => {
-    Calculator.clear();
-    Calculator.updateDisplay();
-})
-
-deleteButton.addEventListener('click', button => {
-    Calculator.delete();
-    Calculator.updateDisplay();
-})
-
-functionButtons.forEach(button=> {
-    button.addEventListener('click', ()=> {
-        Calculator.chooseSciOperator(button.innerText);
+    equalsButton.addEventListener('click', button => {
+        if (Calculator.compute() || Calculator.sciFuncComputation()) return;
         Calculator.updateDisplay();
     })
-})
 
-exponentButton.forEach(button => {
-    button.addEventListener('click', () => {
-        Calculator.chooseExpoOperator(button.innerText);
+    allClearButton.addEventListener('click', button => {
+        Calculator.clear();
         Calculator.updateDisplay();
     })
-})
+
+    deleteButton.addEventListener('click', button => {
+        Calculator.delete();
+        Calculator.updateDisplay();
+    })
+
+    functionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            Calculator.chooseSciOperator(button.innerText);
+            Calculator.updateDisplay();
+        })
+    })
+
+    exponentButton.forEach(button => {
+        button.addEventListener('click', () => {
+            Calculator.chooseExpoOperator(button.innerText);
+            Calculator.updateDisplay();
+        })
+    })
+};
+
+init();
