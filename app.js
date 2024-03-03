@@ -1,4 +1,4 @@
-
+export 
 
 class calculator {
     constructor(previousOperandTextElement, currentOperandTextElement){
