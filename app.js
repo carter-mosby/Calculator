@@ -68,7 +68,7 @@ class calculator {
         }
         this.currentOperand = computation;
         this.operation = undefined;    
-        this.previousOperand = '';
+        this.previousOperand = Enumerator;
 
     }
 
@@ -228,4 +228,5 @@ init = () => {
     })
 };
 
+exports.calculate = calculator;
 init();
