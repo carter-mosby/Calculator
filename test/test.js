@@ -1,16 +1,18 @@
-/*
-const chai = import('chai');
+import calculator from '../src/app';
+const chai = import('chai')
 const expect = chai.expect;
-const calculator =  require('../app');
-var server = "http://127.0.0.1:5500/"
-var calc = new calculator(previousOperandTextElement, currentOperandTextElement);
+//const app = import('../src/app.js')
+
 
 describe('testing calculator', function (){
-    describe('computation', function(){
-        it( "testing computation method",function(init){
-        
-     });
+        it( "addition", function(){
+            const calc = new calculator();
+            calc.appendNumber(2)
+            calc.chooseOperation('+')
+            calc.appendNumber(4)
+            calc.compute()
+
+        expect(calc.currentOperand).to.equal(4)
     
     });
 });
-*/

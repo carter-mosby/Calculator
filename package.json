@@ -2,8 +2,8 @@
   "name": "test",
   "version": "1.0.0",
   "description": "Calculator Tests",
-  "main": "app.js",
-  "type": "commonjs",
+  "main": "/src/app.j",
+  "type": "module",
   "scripts": {
     "test": "mocha"
   },
