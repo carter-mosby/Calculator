@@ -2,16 +2,18 @@
   "name": "test",
   "version": "1.0.0",
   "description": "Calculator Tests",
-  "main": "/src/app.j",
-  "type": "module",
+  "main": "app.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:browser": "live-server --port=5500 --mount=/:public"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "chai": "^5.1.0",
     "mocha": "10.3.0",
-    "sinon": "^17.0.1"
+    "sinon": "^17.0.1",
+    "live-server": "^1.2.2"
   }
 }
