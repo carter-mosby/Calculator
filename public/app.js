@@ -23,43 +23,46 @@ export class calculator {
     }
 }
 //allows for one comma to be appended, then converts the number typed in to a string
-appendNumber(number){
-    if(number === '.' && this.currentOperand.includes('.')) return;
-    this.currentOperand = this.currentOperand.toString() + number.toString();
-}
+    appendNumber(number){
+        if(number === '.' && this.currentOperand.includes('.')) return;
+        this.currentOperand = this.currentOperand.toString() + number.toString();
+    }
 
 //sets an operator to the end of string
-chooseOperation(operation){
-    //if current operand is = null then doesnt allow for an operator to be placed
-    if(this.currentOperand === '') return
-    //when both fields are complete with a string allows the computation function to be ran
-    if(this.previousOperand !== ''){
+    chooseOperation(operation){
+        //if current operand is = null then doesnt allow for an operator to be placed
+     if(this.currentOperand === '') return
+     //when both fields are complete with a string allows the computation function to be ran
+        if(this.previousOperand !== ''){
         this.compute();
-    };
-    this.operation = operation;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = '';
-}
+        };
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
+    }
     //exponents
 
-chooseExponents(exponent){
+    chooseExponents(exponent){
 
-    if(this.previousOperand === ''){
-        this.exponentsComp();
-    }
-    this.exponent = exponent 
+        if(this.currentOperand === '') return
+        if(this.previousOperand !== ''){
+            this.exponentsComp();
+        }
+        this.exponent = exponent;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
     };
 
 
     //allows for choice of a sci operator 
-chooseSciOperator(sciFunction){
-    if(this.currentOperand === ''){
-        this.compute();
-    }
-    if(this.previousOperand !== ''){
-        this.sciFuncComputation();
-    }
-    this.sciFunction = sciFunction;
+    chooseSciOperator(sciFunction){
+        if(this.currentOperand === ''){
+            this.compute();
+        }
+        if(this.previousOperand !== ''){
+            this.sciFuncComputation();
+      }
+        this.sciFunction = sciFunction;
     };
 
     
@@ -167,9 +170,25 @@ chooseSciOperator(sciFunction){
 
     exponentsComp(){
         let powComp;
+        const current = parseFloat(this.currentOperand);
         switch(this.exponent){
-            case "x^2":
+            case"xy":
+                powComp = Math.pow(x = current, y =2);
+                break;
+            case"x2":
                 powComp = Math.pow();
+                break;
+            case"x3":
+                powComp = Math.pow();
+                break;
+            case"ex":
+                powComp = Math.pow();
+                break;
+            case"10x":
+                powComp = Math.pow();
+                break;
+            default:
+                return;
         }   
         
         this.currentOperand = powComp;
@@ -203,12 +222,13 @@ chooseSciOperator(sciFunction){
 
         if (this.exponent !== null){
             this.currentOperandTextElement.innerText = 
-        `${this.exponent} ${this.getDisplayNumber(this.currentOperand)}`
-        }
+            `${this.exponent} ${this.getDisplayNumber(this.currentOperand)}`
+        };
         
     }
 };
 
+//query selectors to grab data from DOM
 const functionButtons = document.querySelectorAll('[data-sciFunc]')
 const numberButtons = document.querySelectorAll('[data-number]');
 const equalsButton = document.querySelector('[data-equals]');
@@ -217,7 +237,6 @@ const allClearButton = document.querySelector('[data-all-clear]');
 const operationButton = document.querySelectorAll('[data-operation]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
-    //query selectors to grab data from DOM
     //const radMode = document.querySelector('[scirdsettingr]');
     //const degMode = document.querySelector('[scirdsettinfd]');
 const exponentButton = document.querySelectorAll(['data-sciExponent']);
@@ -243,7 +262,7 @@ export function init(){
     })
 
     var eq = equalsButton.addEventListener('click', button => {
-        if (Calculator.compute() || Calculator.sciFuncComputation()) return;
+        if (Calculator.compute() ||  Calculator.sciFuncComputation())return;
         Calculator.updateDisplay();
     })
 
@@ -266,7 +285,7 @@ export function init(){
 
     var exp = exponentButton.forEach(button => {
         button.addEventListener('click', () => {
-            Calculator.chooseExpoOperator(button.innerText);
+            Calculator.chooseExponents(button.innerText);
             Calculator.updateDisplay();
         })
     })
