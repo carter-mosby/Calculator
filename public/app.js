@@ -42,15 +42,11 @@ export class calculator {
     }
     //exponents
 
-    chooseExponents(exponent){
-
-        if(this.currentOperand === '') return
-        if(this.previousOperand !== ''){
+    chooseExponents(sciExponent){
+        if(this.currentOperand !== ''){
             this.exponentsComp();
         }
-        this.exponent = exponent;
-        this.previousOperand = this.currentOperand;
-        this.currentOperand = '';
+        this.exponent = sciExponent;
     };
 
 
@@ -97,108 +93,108 @@ export class calculator {
     }
 
     
-    getDisplayNumber(number){
-        //turns number to string
-        const stringNumber = number.toString();
-        //if no decimal is found before number it is saved to integer digit and returned as a number
-        const integerDigits = parseFloat(stringNumber.split('.')[0])
-        //if decimal point is present saves numbers after to decimal digit
-        const decimalDigits = stringNumber.split('.')[1]
-
-        let integerDisplay = '';
-
-         if(integerDigits){ 
-            //turns the current display to a localestring in this case En so it seperates the current integer with commas when exceding a certain length 
-            //(i.e 100000 V.S. 100,000) for legibility
-            integerDisplay = integerDigits.toLocaleString('en', {
-                maximumFractionDigits: 0
-            })
-        }
-        //if decimal digits are present; appends the decimal digits without formation to the now formmated integer digits.
-        if (decimalDigits != null){
-            return `${integerDisplay}.${decimalDigits}`;
-        } else{
-            return integerDisplay;
-        }
-    }  
     //this method allows for computation of the scientifc functions
     sciFuncComputation(){
         let sciComp
         //turns the current opperand to a string
         const current = parseFloat(this.currentOperand);
         //uses built-in statements in the switch case
-            switch(this.sciFunction){
+        switch(this.sciFunction){
                 case"tan":
-                    sciComp = Math.tan(current);
-                    break;
-
+                sciComp = Math.tan(current);
+                break;
+                
                 case"sin":
-                    sciComp = Math.sin(current);
-                    break;
-
+                sciComp = Math.sin(current);
+                break;
+                
                 case"cos":
-                    sciComp = Math.cos(current);
-                    break;
-
+                sciComp = Math.cos(current);
+                break;
+                
                 case"tanH":
-                    sciComp = Math.tanh(current);
-                    break;
-
+                sciComp = Math.tanh(current);
+                break;
+                
                 case"sinH":
-                    sciComp = Math.sinh(current);
-                    break;
-
+                sciComp = Math.sinh(current);
+                break;
+                
                 case"cosH":
-                    sciComp = Math.cosh(current);
-                    break;
+                sciComp = Math.cosh(current);
+                break;
                 case"Π":
                     sciComp = Math.PI(current);
                     break;
-                default:
-                    return; 
-            }
+                    default:
+                        return; 
+                }
             this.currentOperand = sciComp;
             this.sciFunction = undefined;
             this.previousOperand = '';
-
+                    
         }
-
-
-
-
-
-
+                
+                
+                
+                
+                
+                
     exponentsComp(){
         let powComp;
         const current = parseFloat(this.currentOperand);
         switch(this.exponent){
             case"xy":
-                powComp = Math.pow(x = current, y =2);
+            powComp = Math.pow(current, expnum);
                 break;
             case"x2":
-                powComp = Math.pow();
+            powComp = Math.pow(current, 2);
                 break;
             case"x3":
-                powComp = Math.pow();
+            powComp = Math.pow(current, 3);
                 break;
             case"ex":
-                powComp = Math.pow();
+            powComp = Math.exp(expnum);
                 break;
             case"10x":
-                powComp = Math.pow();
+            powComp = Math.pow(10, expnum);
                 break;
             default:
                 return;
-        }   
-        
+            }   
+                        
         this.currentOperand = powComp;
         this.exponent = undefined;
         this.previousOperand = '';
-    } 
-
-
-    updateDisplay(){
-        //allows display of the current opperand text element by calling get display number
+        } 
+                    
+            getDisplayNumber(number){
+            //turns number to string
+                const stringNumber = number.toString();
+                //if no decimal is found before number it is saved to integer digit and returned as a number
+                const integerDigits = parseFloat(stringNumber.split('.')[0])
+                //if decimal point is present saves numbers after to decimal digit
+                const decimalDigits = stringNumber.split('.')[1]
+                
+                let integerDisplay = '';
+                
+                if(integerDigits){ 
+                //turns the current display to a localestring in this case En so it seperates the current integer with commas when exceding a certain length 
+                //(i.e 100000 V.S. 100,000) for legibility
+                    integerDisplay = integerDigits.toLocaleString('en', {
+                        maximumFractionDigits: 0
+                    })
+                }
+                    //if decimal digits are present; appends the decimal digits without formation to the now formmated integer digits.
+                if (decimalDigits != null){
+                    return `${integerDisplay}.${decimalDigits}`;
+                } else{
+                    return integerDisplay;
+                    }
+                }  
+                    
+        updateDisplay(){
+                        //allows display of the current opperand text element by calling get display number
         this.currentOperandTextElement.innerText = 
             this.getDisplayNumber(this.currentOperand);
             //if the operation button is clicked and new numbers are added, pushes the current working space to previous working space; and allows for 
@@ -213,16 +209,14 @@ export class calculator {
         
         //for the scientific computation method 
         //keeps scientific function in current working space until equals event listener is executed and returns the result of the operation. 
-        if (this.sciFunction !== null){
+        if (this.sciFunction != null){
             this.currentOperandTextElement.innerText = 
             //allows appendage of the scientific element
            `${this.sciFunction}(${this.getDisplayNumber(this.currentOperand)})`
         };
-
-
-        if (this.exponent !== null){
-            this.currentOperandTextElement.innerText = 
-            `${this.exponent} ${this.getDisplayNumber(this.currentOperand)}`
+        
+        if (this.exponent != null){
+            this.currentOperandTextElement.innerText = `${this.exponent}`
         };
         
     }
@@ -262,7 +256,7 @@ export function init(){
     })
 
     var eq = equalsButton.addEventListener('click', button => {
-        if (Calculator.compute() ||  Calculator.sciFuncComputation())return;
+        if (Calculator.compute() || Calculator.sciFuncComputation() || Calculator.exponentsComp())return;
         Calculator.updateDisplay();
     })
 
